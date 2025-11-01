@@ -2,14 +2,14 @@
 # It will probably still work on newer images, though, unless an update
 # changes some compiler optimisations (unlikely).
 # bookworm-slim taken from https://hub.docker.com/_/debian/tags?page=1&name=bookworm-slim
-FROM debian@sha256:7e490910eea2861b9664577a96b54ce68ea3e02ce7f51d89cb0103a6f9c386e0
+FROM debian@sha256:72547dd722cd005a8c2aa2079af9ca0ee93aad8e589689135feaed60b0a8c08d
 # install remove default packages repository
 RUN rm /etc/apt/sources.list.d/debian.sources
 # and set the package source to a specific release too
 # taken from https://snapshot.debian.org/archive/debian
-RUN printf "deb [check-valid-until=no] http://snapshot.debian.org/archive/debian/20251001T023456Z bookworm main\n" > /etc/apt/sources.list
+RUN printf "deb [check-valid-until=no] https://snapshot.debian.org/archive/debian/20251101T082725Z bookworm main\n" > /etc/apt/sources.list
 # taken from https://snapshot.debian.org/archive/debian-security/
-RUN printf "deb [check-valid-until=no] http://snapshot.debian.org/archive/debian-security/20251001T130422Z bookworm-security main\n" >> /etc/apt/sources.list
+RUN printf "deb [check-valid-until=no] https://snapshot.debian.org/archive/debian-security/20251031T150335Z bookworm-security main\n" >> /etc/apt/sources.list
 
 RUN apt update && apt install --no-install-recommends --no-install-suggests -y wget ca-certificates git patch unzip bzip2 make gcc g++ libc-dev
 RUN wget -O /usr/bin/opam https://github.com/ocaml/opam/releases/download/2.4.1/opam-2.4.1-i686-linux && chmod 755 /usr/bin/opam
