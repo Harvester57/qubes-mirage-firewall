@@ -13,7 +13,7 @@ RUN printf "deb [check-valid-until=no] https://snapshot.debian.org/archive/debia
 # taken from https://snapshot.debian.org/archive/debian-security/
 RUN printf "deb [check-valid-until=no] https://snapshot.debian.org/archive/debian-security/20251031T150335Z bookworm-security main\n" >> /etc/apt/sources.list
 
-RUN apt update && apt install --no-install-recommends --no-install-suggests -y wget ca-certificates git patch unzip bzip2 make gcc g++ libc-dev
+RUN apt-get update && apt-get install --no-install-recommends --no-install-suggests -y wget ca-certificates git patch unzip bzip2 make gcc g++ libc-dev apt-transport-https gnupg2
 RUN wget -O /usr/bin/opam https://github.com/ocaml/opam/releases/download/2.4.1/opam-2.4.1-i686-linux && chmod 755 /usr/bin/opam
 # taken from https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh
 RUN test `sha512sum /usr/bin/opam | cut -d' ' -f1` = \
