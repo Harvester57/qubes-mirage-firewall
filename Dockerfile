@@ -3,6 +3,8 @@
 # changes some compiler optimisations (unlikely).
 # bookworm-slim taken from https://hub.docker.com/_/debian/tags?page=1&name=bookworm-slim
 FROM debian@sha256:72547dd722cd005a8c2aa2079af9ca0ee93aad8e589689135feaed60b0a8c08d
+# Add root certificates and apt-transport-https to support https package sources
+RUN apt-get update && apt-get install -y ca-certificates apt-transport-https gnupg2
 # install remove default packages repository
 RUN rm /etc/apt/sources.list.d/debian.sources
 # and set the package source to a specific release too
